@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STEM & Sciences — ResourceIQ</title>
+<meta name="theme-color" content="#08110E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="resource.css">
+</head>
+<body class="riq sector">
+
+<a class="skip-link" href="#main-content">Skip to resources</a>
+
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="scan-line"></div>
+<canvas id="pc"></canvas>
+
+<!-- NAV (same as home page) -->
+<nav aria-label="Main">
+  <a class="logo" href="index.html" aria-label="ResourceIQ home">
+    <div class="logo-gem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    ResourceIQ
+  </a>
+
+  <div class="nav-center">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="index.html#explore">Explore</a>
+    <a class="nav-link is-here" href="index.html#sectors">Sectors</a>
+    <a class="nav-link" href="index.html#about">About</a>
+  </div>
+
+  <div class="nav-right">
+    <button class="nav-search" type="button" data-open-search aria-label="Search this sector">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="nav-search-label">Search</span>
+      <kbd id="search-kbd">Ctrl K</kbd>
+    </button>
+    <a class="nav-cta" href="index.html#explore"><span class="nav-cta-text">Explore Resources</span></a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav-menu" id="nav-menu" hidden>
+    <a href="index.html">Home</a>
+    <a href="index.html#explore">Explore</a>
+    <a href="index.html#sectors">Sectors</a>
+    <a href="index.html#about">About</a>
+    <div class="nav-menu-sub">
+      <a href="sector-stem.html" aria-current="page">🔬 STEM</a>
+      <a href="sector-tech.html">💻 Tech</a>
+      <a href="sector-creative.html">🎨 Creative</a>
+      <a href="sector-social.html">💼 Social</a>
+      <a href="sector-lifestyle.html">🌍 Lifestyle</a>
+    </div>
+    <button class="nav-menu-search" type="button" data-open-search>Search this sector</button>
+    <a class="nav-menu-cta" href="index.html#explore">Explore Resources</a>
+  </div>
+</nav>
+
+<section class="sector-hero">
+  <div class="sh-copy">
+    <div class="sh-crumbs"><a href="index.html">Home</a><span class="sep">/</span><a href="index.html#sectors">Sectors</a><span class="sep">/</span><span aria-current="page">STEM &amp; Sciences</span></div>
+    <div class="sector-badge">Sector 01 · Science & Research</div>
+    <h1>STEM &amp; <em>Sciences</em></h1>
+    <p>Physics, chemistry, biology, mathematics, statistics, data science, engineering, astronomy, geography, and public health — the complete scientific knowledge hub.</p>
+    <div class="sector-stats">
+    <div class="sstat"><strong>10</strong><span>Fields</span></div>
+    <div class="sstat"><strong>60+</strong><span>Resources</span></div>
+    <div class="sstat"><strong>100%</strong><span>Verified</span></div>
+  </div>
+  </div>
+
+  <aside class="sector-switch" aria-label="Other sectors">
+    <div class="hi-title">Other sectors <a class="back-btn" href="index.html">← All Sectors</a></div>
+      <a class="hi-row" href="sector-tech.html"><span class="hi-ico">💻</span><span class="hi-name">Tech &amp; Digital</span><span class="hi-meta">10 fields</span><span class="hi-go" aria-hidden="true">↗</span></a>
+      <a class="hi-row" href="sector-creative.html"><span class="hi-ico">🎨</span><span class="hi-name">Creative &amp; Humanities</span><span class="hi-meta">8 fields</span><span class="hi-go" aria-hidden="true">↗</span></a>
+      <a class="hi-row" href="sector-social.html"><span class="hi-ico">💼</span><span class="hi-name">Social &amp; Professional</span><span class="hi-meta">10 fields</span><span class="hi-go" aria-hidden="true">↗</span></a>
+      <a class="hi-row" href="sector-lifestyle.html"><span class="hi-ico">🌍</span><span class="hi-name">Learning &amp; Lifestyle</span><span class="hi-meta">10 fields</span><span class="hi-go" aria-hidden="true">↗</span></a>
+  </aside>
+</section>
+
+<div class="sector-toolbar">
+  <div class="sector-toolbar-inner">
+    <div class="field-tabs" id="field-tabs">
+      <button class="ftab active" onclick="filterField('all',this)">🌐 All</button>
+      <button class="ftab" onclick="filterField('physics',this)">⚛️ Physics</button>
+      <button class="ftab" onclick="filterField('chemistry',this)">🧪 Chemistry</button>
+      <button class="ftab" onclick="filterField('biology',this)">🧬 Biology</button>
+      <button class="ftab" onclick="filterField('mathematics',this)">📐 Mathematics</button>
+      <button class="ftab" onclick="filterField('statistics',this)">📉 Statistics</button>
+      <button class="ftab" onclick="filterField('data-science',this)">📊 Data Science</button>
+      <button class="ftab" onclick="filterField('engineering',this)">⚙️ Engineering</button>
+      <button class="ftab" onclick="filterField('astronomy',this)">🌌 Astronomy</button>
+      <button class="ftab" onclick="filterField('geography',this)">🗺️ Geography</button>
+      <button class="ftab" onclick="filterField('public-health',this)">🧬 Public Health</button>
+    </div>
+    <div class="sector-search" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <label class="sr-only" for="sector-search-input">Search this sector</label>
+      <input id="sector-search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Search this sector">
+      <button class="hs-clear" id="sector-search-clear" type="button" aria-label="Clear search" hidden>✕</button>
+    </div>
+  </div>
+</div>
+
+<main id="main-content"></main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="logo" href="index.html">
+        <div class="logo-gem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        ResourceIQ
+      </a>
+      <p>ResourceIQ — STEM &amp; Sciences Sector &nbsp;·&nbsp; <a href="index.html">← All Sectors</a></p>
+    </div>
+    <div class="footer-links">
+      <a href="sector-stem.html">🔬 STEM</a>
+      <a href="sector-tech.html">💻 Tech</a>
+      <a href="sector-creative.html">🎨 Creative</a>
+      <a href="sector-social.html">💼 Social</a>
+      <a href="sector-lifestyle.html">🌍 Lifestyle</a>
+    </div>
+  </div>
+</footer>
+<!-- <button class="ai-fab" title="Ask AI">🤖</button> -->
+<script src="resource.js"></script>
+</body>
+</html>

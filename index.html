@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResourceIQ — AI-Powered Learning Hub</title>
+<meta name="description" content="ResourceIQ — 250+ handpicked tools, courses and references organised across 5 sectors. Search every resource or browse by field.">
+<meta name="theme-color" content="#08110E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="resource.css">
+</head>
+<body class="riq home">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- AMBIENT ELEMENTS (kept; toned down in CSS) -->
+<div class="grid-bg"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="scan-line"></div>
+<canvas id="particle-canvas"></canvas>
+
+<!-- NAV -->
+<nav aria-label="Main">
+  <a class="logo" href="index.html" aria-label="ResourceIQ home">
+    <div class="logo-gem">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    ResourceIQ
+  </a>
+
+  <div class="nav-center">
+    <a class="nav-link" href="#top">Home</a>
+    <a class="nav-link" href="#explore">Explore</a>
+    <a class="nav-link luminous-anchor" href="#sectors"><span>Sectors</span></a>
+    <a class="nav-link" href="#about">About</a>
+  </div>
+
+  <div class="nav-right">
+    <button class="nav-search" type="button" data-open-search aria-label="Search resources">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="nav-search-label">Search</span>
+      <kbd id="search-kbd">Ctrl K</kbd>
+    </button>
+    <a class="nav-cta" href="#explore">
+      <canvas class="nav-cta-stars" id="cta-stars" width="120" height="38"></canvas>
+      <div class="nav-cta-flare"></div>
+      <span class="nav-cta-text">Explore Resources</span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <!-- mobile / tablet menu -->
+  <div class="nav-menu" id="nav-menu" hidden>
+    <a href="#top">Home</a>
+    <a href="#explore">Explore</a>
+    <a href="#sectors">Sectors</a>
+    <a href="#about">About</a>
+    <div class="nav-menu-sub">
+      <a href="sector-stem.html">🔬 STEM</a>
+      <a href="sector-tech.html">💻 Tech</a>
+      <a href="sector-creative.html">🎨 Creative</a>
+      <a href="sector-social.html">💼 Social</a>
+      <a href="sector-lifestyle.html">🌍 Lifestyle</a>
+    </div>
+    <button class="nav-menu-search" type="button" data-open-search>Search resources</button>
+    <a class="nav-menu-cta" href="#explore">Explore Resources</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <!-- decorative concentric rings -->
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <div class="hero-ring hero-ring-3"></div>
+  <div class="hero-ring hero-ring-4"></div>
+
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Resource discovery platform</div>
+      <h1>
+        Find the best resources
+        <span class="line-2">across every field.</span>
+      </h1>
+      <p class="hero-sub">250+ handpicked tools, courses, and references organized across 5 sectors — built for students, professionals, creators, and curious minds.</p>
+
+      <!-- SEARCH -->
+      <div class="hero-search" role="search">
+        <label class="sr-only" for="hero-search-input">Search resources</label>
+        <div class="hs-box">
+          <svg class="hs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="hero-search-input" type="search" autocomplete="off" spellcheck="false"
+                 placeholder="Search resources — try &quot;python&quot;, &quot;figma&quot; or &quot;statistics&quot;"
+                 role="combobox" aria-expanded="false" aria-controls="hero-search-results" aria-autocomplete="list">
+          <button class="hs-clear" id="hero-search-clear" type="button" aria-label="Clear search" hidden>✕</button>
+        </div>
+        <ul class="hs-results" id="hero-search-results" role="listbox" aria-label="Matching resources" hidden></ul>
+        <p class="sr-only" id="hero-search-status" aria-live="polite"></p>
+        <div class="hs-try">
+          <span>Try</span>
+          <button type="button" data-query="machine learning">Machine learning</button>
+          <button type="button" data-query="figma">Figma</button>
+          <button type="button" data-query="statistics">Statistics</button>
+          <button type="button" data-query="language">Languages</button>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hstat"><strong><span class="counter" data-target="250">0</span>+</strong><span>Resources</span></div>
+        <div class="hstat"><strong><span class="counter" data-target="55">0</span></strong><span>Fields</span></div>
+        <div class="hstat"><strong><span class="counter" data-target="5">0</span></strong><span>Sectors</span></div>
+        <div class="hstat"><strong>100%</strong><span>Verified</span></div>
+      </div>
+    </div>
+
+    <!-- SECTOR INDEX (quick links to every sector page) -->
+    <aside class="hero-index" aria-label="Sectors">
+      <div class="hi-title">Jump to a sector</div>
+      <a class="hi-row" href="sector-stem.html"><span class="hi-ico">🔬</span><span class="hi-name">STEM &amp; Sciences</span><span class="hi-meta">10 fields</span><span class="hi-go" aria-hidden="true">↗</span></a>
+      <a class="hi-row" href="sector-tech.html"><span class="hi-ico">💻</span><span class="hi-name">Tech &amp; Digital</span><span class="hi-meta">10 fields</span><span class="hi-go" aria-hidden="true">↗</span></a>
+      <a class="hi-row" href="sector-creative.html"><span class="hi-ico">🎨</span><span class="hi-name">Creative &amp; Humanities</span><span class="hi-meta">8 fields</span><span class="hi-go" aria-hidden="true">↗</span></a>
+      <a class="hi-row" href="sector-social.html"><span class="hi-ico">💼</span><span class="hi-name">Social &amp; Professional</span><span class="hi-meta">10 fields</span><span class="hi-go" aria-hidden="true">↗</span></a>
+      <a class="hi-row" href="sector-lifestyle.html"><span class="hi-ico">🌍</span><span class="hi-name">Learning &amp; Lifestyle</span><span class="hi-meta">10 fields</span><span class="hi-go" aria-hidden="true">↗</span></a>
+    </aside>
+  </div>
+
+  <div class="scroll-ind">
+    <div class="mouse"><div class="wheel"></div></div>
+    <span>Scroll to explore</span>
+  </div>
+</section>
+
+<!-- ── EXPLORE: every field, grouped by sector (built from resource data) ── -->
+<section class="explore" id="explore">
+  <div class="section-head">
+    <h2>Browse every field</h2>
+    <p>Every field in the library, grouped by sector. The number beside each field is how many verified resources it holds.</p>
+  </div>
+  <div class="field-index" id="field-index"></div>
+</section>
+
+<!-- ── DECORATIVE DIVIDER ── -->
+<div class="divider">
+  <svg viewBox="0 0 1440 160" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0 80 Q360 20 720 80 Q1080 140 1440 80" stroke="rgba(0,245,212,0.12)" stroke-width="1.5" fill="none"/>
+    <path d="M0 80 Q360 140 720 80 Q1080 20 1440 80" stroke="rgba(123,44,191,0.1)" stroke-width="1" fill="none"/>
+    <circle cx="0"   cy="80" r="3" fill="rgba(0,245,212,0.25)"/>
+    <circle cx="240" cy="42" r="2" fill="rgba(0,245,212,0.18)"/>
+    <circle cx="480" cy="30" r="2.5" fill="rgba(123,44,191,0.3)"/>
+    <circle cx="720" cy="80" r="4" fill="rgba(0,245,212,0.35)"/>
+    <circle cx="960" cy="130" r="2" fill="rgba(123,44,191,0.2)"/>
+    <circle cx="1200" cy="118" r="2.5" fill="rgba(0,245,212,0.18)"/>
+    <circle cx="1440" cy="80" r="3" fill="rgba(0,245,212,0.25)"/>
+  </svg>
+  <div class="divider-label">5 knowledge sectors</div>
+</div>
+
+<!-- ── SECTORS ── -->
+<div class="sectors-heading" id="sectors">
+  <h2>Choose your <span>sector</span></h2>
+  <p>Use the arrows, dots, or swipe. Each sector opens a focused hub of fields and resources.</p>
+</div>
+
+<div class="carousel-section">
+  <div class="carousel-track-wrap">
+    <div class="carousel-track" id="carousel-track">
+
+      <!-- STEM -->
+      <a class="sector-card" href="sector-stem.html" target="_blank">
+        <div class="sc-bg-shape"></div>
+        <div class="sc-header">
+          <div class="sc-icon">🔬</div>
+          <div>
+            <div class="sc-title">STEM &amp; Sciences</div>
+            <div class="sc-subtitle">10 fields · 60 resources</div>
+          </div>
+        </div>
+        <p class="sc-desc">Physics, chemistry, biology, mathematics, statistics, data science, engineering, astronomy, geography, and public health — the full spectrum of scientific knowledge.</p>
+        <div class="sc-fields">
+          <span class="sc-field">⚛️ Physics</span><span class="sc-field">🧪 Chemistry</span><span class="sc-field">🧬 Biology</span>
+          <span class="sc-field">📐 Mathematics</span><span class="sc-field">📊 Data Science</span><span class="sc-field">⚙️ Engineering</span>
+          <span class="sc-field">📉 Statistics</span><span class="sc-field">🌌 Astronomy</span><span class="sc-field">🗺️ Geography</span><span class="sc-field">🧬 Public Health</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-count">Discover <strong>60+</strong> verified resources</div>
+          <div class="sc-cta">Enter Sector <span>↗</span></div>
+        </div>
+      </a>
+
+      <!-- TECH -->
+      <a class="sector-card" href="sector-tech.html" target="_blank">
+        <div class="sc-bg-shape"></div>
+        <div class="sc-header">
+          <div class="sc-icon">💻</div>
+          <div>
+            <div class="sc-title">Tech &amp; Digital</div>
+            <div class="sc-subtitle">10 fields · 60 resources</div>
+          </div>
+        </div>
+        <p class="sc-desc">Programming, AI/ML, cybersecurity, DevOps, cloud computing, networking, mobile development, blockchain, robotics, and open source — the builder's stack.</p>
+        <div class="sc-fields">
+          <span class="sc-field">💻 Programming</span><span class="sc-field">🤖 AI &amp; ML</span><span class="sc-field">🔒 Cybersecurity</span>
+          <span class="sc-field">🔧 DevOps</span><span class="sc-field">☁️ Cloud</span><span class="sc-field">🕸️ Networking</span>
+          <span class="sc-field">📱 Mobile Dev</span><span class="sc-field">⛓️ Blockchain</span><span class="sc-field">🦾 Robotics</span><span class="sc-field">🌐 Open Source</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-count">Discover <strong>60+</strong> verified resources</div>
+          <div class="sc-cta">Enter Sector <span>↗</span></div>
+        </div>
+      </a>
+
+      <!-- CREATIVE -->
+      <a class="sector-card" href="sector-creative.html" target="_blank">
+        <div class="sc-bg-shape"></div>
+        <div class="sc-header">
+          <div class="sc-icon">🎨</div>
+          <div>
+            <div class="sc-title">Creative &amp; Humanities</div>
+            <div class="sc-subtitle">8 fields · 46 resources</div>
+          </div>
+        </div>
+        <p class="sc-desc">Design, writing, music production, photography, filmmaking, visual art, architecture, and literature — tools and knowledge for every creative discipline.</p>
+        <div class="sc-fields">
+          <span class="sc-field">🎨 Design</span><span class="sc-field">✍️ Writing</span><span class="sc-field">🎵 Music</span>
+          <span class="sc-field">📷 Photography</span><span class="sc-field">🎬 Film</span><span class="sc-field">🖼️ Visual Art</span>
+          <span class="sc-field">🏛️ Architecture</span><span class="sc-field">📚 Literature</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-count">Discover <strong>46+</strong> verified resources</div>
+          <div class="sc-cta">Enter Sector <span>↗</span></div>
+        </div>
+      </a>
+
+      <!-- SOCIAL & PROFESSIONAL -->
+      <a class="sector-card" href="sector-social.html" target="_blank">
+        <div class="sc-bg-shape"></div>
+        <div class="sc-header">
+          <div class="sc-icon">💼</div>
+          <div>
+            <div class="sc-title">Social &amp; Professional</div>
+            <div class="sc-subtitle">10 fields · 58 resources</div>
+          </div>
+        </div>
+        <p class="sc-desc">Business, law, economics, finance, social sciences, marketing, journalism, education technology, psychology, and personal development — the professional edge.</p>
+        <div class="sc-fields">
+          <span class="sc-field">💼 Business</span><span class="sc-field">⚖️ Law</span><span class="sc-field">📈 Economics</span>
+          <span class="sc-field">💰 Finance</span><span class="sc-field">🏛️ Social Sciences</span><span class="sc-field">📣 Marketing</span>
+          <span class="sc-field">📰 Journalism</span><span class="sc-field">🎓 EdTech</span><span class="sc-field">🧠 Psychology</span><span class="sc-field">🚀 Self Dev</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-count">Discover <strong>58+</strong> verified resources</div>
+          <div class="sc-cta">Enter Sector <span>↗</span></div>
+        </div>
+      </a>
+
+      <!-- LIFESTYLE -->
+      <a class="sector-card" href="sector-lifestyle.html" target="_blank">
+        <div class="sc-bg-shape"></div>
+        <div class="sc-header">
+          <div class="sc-icon">🌍</div>
+          <div>
+            <div class="sc-title">Learning &amp; Lifestyle</div>
+            <div class="sc-subtitle">10 fields · 53 resources</div>
+          </div>
+        </div>
+        <p class="sc-desc">Academic learning, language learning, history, philosophy, game development, fitness, cooking, mindfulness, UX research, and travel — a life fully explored.</p>
+        <div class="sc-fields">
+          <span class="sc-field">🎓 Academic</span><span class="sc-field">🌍 Languages</span><span class="sc-field">🏺 History</span>
+          <span class="sc-field">🤔 Philosophy</span><span class="sc-field">🎮 Game Dev</span><span class="sc-field">💪 Fitness</span>
+          <span class="sc-field">👨‍🍳 Cooking</span><span class="sc-field">🌱 Wellness</span><span class="sc-field">🔬 UX Research</span><span class="sc-field">✈️ Travel</span>
+        </div>
+        <div class="sc-footer">
+          <div class="sc-count">Discover <strong>53+</strong> verified resources</div>
+          <div class="sc-cta">Enter Sector <span>↗</span></div>
+        </div>
+      </a>
+
+    </div><!-- /track -->
+  </div><!-- /wrap -->
+
+  <!-- Controls -->
+  <div class="carousel-controls">
+    <button class="car-btn" id="car-prev" aria-label="Previous sector">&#8592;</button>
+    <div class="car-dots" id="car-dots"></div>
+    <button class="car-btn" id="car-next" aria-label="Next sector">&#8594;</button>
+  </div>
+  <div class="car-counter-wrap">
+    <span class="car-counter" id="car-counter" aria-live="polite"><em>1</em> / 5</span>
+  </div>
+</div>
+
+<!-- ── ABOUT: how ResourceIQ works ── -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-copy">
+      <h2>How ResourceIQ works</h2>
+      <p class="about-lead">We look at hundreds of sites, courses and tools, keep the ones worth your time, and file each one under the field it serves. You search or browse; we've already done the sorting.</p>
+
+      <!-- ── FEATURE STRIP ── -->
+      <section class="feature-strip">
+        <div class="feature-strip-inner">
+          <div class="feat-card">
+            <div class="feat-icon">🎯</div>
+            <div class="feat-title">Curated &amp; Verified</div>
+            <p class="feat-desc">Every resource is hand-picked and quality-checked — no spam, no ads, no low-effort links. Just the very best tools per field.</p>
+          </div>
+          <!-- <div class="feat-card">
+            <div class="feat-icon">🤖</div>
+            <div class="feat-title">AI-Powered Discovery</div>
+            <p class="feat-desc">Our embedded AI assistant helps you find the right resource for your exact level, goal, and learning style in seconds.</p>
+          </div> -->
+          <div class="feat-card">
+            <div class="feat-icon">🗺️</div>
+            <div class="feat-title">5 Intelligent Sectors</div>
+            <p class="feat-desc">Knowledge organised into STEM, Tech, Creative, Social, and Lifestyle — 55 fields with a focused, distraction-free experience.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── AI NEURAL ANIMATION ── -->
+    <section class="ai-anim-section" aria-label="Illustration of how a search is matched to resources">
+      <div class="ai-anim-label">
+        <span class="ai-anim-pill">From question to resource</span>
+      </div>
+      <div class="ai-anim-wrap">
+        <canvas id="neural-canvas" aria-hidden="true"></canvas>
+        <div class="ai-anim-overlay-left"></div>
+        <div class="ai-anim-overlay-right"></div>
+        <!-- stage labels for the diagram -->
+        <div class="ai-chip ai-chip-1">Your goal</div>
+        <div class="ai-chip ai-chip-2">Fields</div>
+        <div class="ai-chip ai-chip-3">Sectors</div>
+        <div class="ai-chip ai-chip-4">Best match</div>
+      </div>
+    </section>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="logo" href="index.html">
+        <div class="logo-gem">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        ResourceIQ
+      </a>
+      <p>ResourceIQ — learning hub by aryan &nbsp;·&nbsp; 250+ Verified Resources across 55 Fields</p>
+    </div>
+    <div class="footer-links">
+      <a href="sector-stem.html">🔬 STEM</a>
+      <a href="sector-tech.html">💻 Tech</a>
+      <a href="sector-creative.html">🎨 Creative</a>
+      <a href="sector-social.html">💼 Social</a>
+      <a href="sector-lifestyle.html">🌍 Lifestyle</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="resource.js"></script>
+</body>
+</html>
